@@ -47,7 +47,7 @@ class Generator(nn.Module):
 				nn.BatchNorm2d(image_size),
 				nn.ReLU(inplace=True))
 		self.last = nn.Sequential(
-				nn.ConvTranspose2d(image_size,1,kernel_size=4,stride=2,padding=1),
+				nn.ConvTranspose2d(image_size,3,kernel_size=4,stride=2,padding=1),
 				nn.Tanh())
 
 	def forward(self,z):
@@ -63,7 +63,8 @@ G = Generator(z_dim=20,image_size=64)
 input_z = torch.randn(1,20)
 input_z = input_z.view(input_z.size(0),input_z.size(1),1,1)
 img = G(input_z)
-img_transformed = img[0][0].detach().numpy()
+print(img.shape)
+img_transformed = img[0].detach().numpy().transpose(1,2,0)
 print(img_transformed.shape)
 plt.imshow(img_transformed)
 plt.show()
