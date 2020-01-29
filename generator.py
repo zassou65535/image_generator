@@ -58,16 +58,16 @@ class Generator(nn.Module):
 		out = self.last(out)
 		return out
 
-#動作検証
-G = Generator(z_dim=20,image_size=64)
-input_z = torch.randn(1,20)
-input_z = input_z.view(input_z.size(0),input_z.size(1),1,1)
-img = G(input_z)
-print(img.shape)
-img_transformed = img[0].detach().numpy().transpose(1,2,0)
-print(img_transformed.shape)
-plt.imshow(img_transformed)
-plt.show()
+# #動作検証
+# G = Generator(z_dim=20,image_size=64)
+# input_z = torch.randn(1,20)
+# input_z = input_z.view(input_z.size(0),input_z.size(1),1,1)
+# img = G(input_z)
+# print(img.shape)
+# img_transformed = img[0].detach().numpy().transpose(1,2,0)
+# print(img_transformed.shape)
+# plt.imshow(img_transformed)
+# plt.show()
 
 
 
