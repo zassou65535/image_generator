@@ -73,7 +73,7 @@ def train_model(G,D,dataloader,num_epochs):
 			#epochの最後のイテレーションはミニバッチの数が少なくなる
 			mini_batch_size = imgs.size()[0]
 			label_real = torch.full((mini_batch_size,),1).to(device)
-			label_fake = torch.full((mini_batch_size,),0).to(device)
+			label_fake = torch.full((mini_batch_size*3,),0).to(device)
 			#真の画像を判定
 			d_out_real = D(imgs)
 			#偽の画像を生成して判定
@@ -85,7 +85,7 @@ def train_model(G,D,dataloader,num_epochs):
 			d_loss_real = criterion(d_out_real.view(-1),label_real)
 			print(d_out_fake.size())
 			print(d_out_fake.view(-1).size())
-			print(label_fake)
+			print(label_fake.size())
 			d_loss_fake = criterion(d_out_fake.view(-1),label_fake)
 			d_loss = d_loss_real + d_loss_fake
 			#誤差を伝搬
