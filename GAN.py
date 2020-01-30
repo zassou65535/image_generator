@@ -83,9 +83,6 @@ def train_model(G,D,dataloader,num_epochs):
 			d_out_fake = D(fake_images)
 			#誤差の計算
 			d_loss_real = criterion(d_out_real.view(-1),label_real)
-			print(d_out_fake.size())
-			print(d_out_fake.view(-1).size())
-			print(label_fake)
 			d_loss_fake = criterion(d_out_fake.view(-1),label_fake)
 			d_loss = d_loss_real + d_loss_fake
 			#誤差を伝搬
