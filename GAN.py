@@ -79,8 +79,8 @@ def train_model(G,D,dataloader,num_epochs):
 			#偽の画像を生成して判定
 			input_z = torch.randn(mini_batch_size,z_dim,3).to(device)
 			input_z = input_z.view(input_z.size(0),input_z.size(1),1,3)
-			print(input_z.size())
 			fake_images = G(input_z)
+			d_out_fake = D(fake_images)
 			#誤差の計算
 			d_loss_real = criterion(d_out_real.view(-1),label_real)
 			d_loss_fake = criterion(d_out_fake.view(-1),label_fake)
