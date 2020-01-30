@@ -18,6 +18,8 @@ def weights_init(m):
 		nn.init.constant_(m.bias.data,0)
 
 #初期化の実施
+G = Generator(z_dim=20,image_size=64)
+D = Discriminator(z_dim=20,image_size=64)
 G.apply(weights_init)
 D.apply(weights_init)
 print("initalized networks")
