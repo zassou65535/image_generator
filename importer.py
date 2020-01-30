@@ -8,7 +8,7 @@ import json
 from PIL import Image
 from tqdm import tqdm
 import matplotlib as mpl
-#mpl.use('Agg')# AGG(Anti-Grain Geometry engine)
+mpl.use('Agg')# AGG(Anti-Grain Geometry engine)
 import matplotlib.pyplot as plt
 
 import torch

@@ -31,7 +31,7 @@ class GAN_Img_Dataset(data.Dataset):
 	#前処理済み画像の、Tensor形式のデータを取得
 	def __getitem__(self,index):
 		img_path = self.file_list[index]
-		img = Image.open(img_path)#[高さ][幅][RGB]
+		img = Image.open(img_path)#[RGB][高さ][幅]
 		img_transformed = self.transform(img)
 		return img_transformed
 
