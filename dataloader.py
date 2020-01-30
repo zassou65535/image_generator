@@ -52,7 +52,7 @@ print(imgs.size())
 fig = plt.figure()
 img_transformed = imgs[0].detach().numpy().transpose(1,2,0)
 plt.imshow(img_transformed)
-fig.savefig("img.png")
+fig.savefig("img/img.png")
 
 
 
