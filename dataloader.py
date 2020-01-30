@@ -35,24 +35,24 @@ class GAN_Img_Dataset(data.Dataset):
 		img_transformed = self.transform(img)
 		return img_transformed
 
-#動作確認
-train_img_list = make_datapath_list()
+# #動作確認
+# train_img_list = make_datapath_list()
 
-mean = (0.5,)
-std = (0.5,)
-train_dataset = GAN_Img_Dataset(file_list=train_img_list,transform=ImageTransform(mean,std,resize_width_height_pixel=64))
+# mean = (0.5,)
+# std = (0.5,)
+# train_dataset = GAN_Img_Dataset(file_list=train_img_list,transform=ImageTransform(mean,std,resize_width_height_pixel=64))
 
-batch_size = 1
-train_dataloader = torch.utils.data.DataLoader(train_dataset,batch_size=batch_size,shuffle=True)
+# batch_size = 1
+# train_dataloader = torch.utils.data.DataLoader(train_dataset,batch_size=batch_size,shuffle=True)
 
-batch_iterator = iter(train_dataloader)
-imgs = next(batch_iterator)
-print(imgs.size())
+# batch_iterator = iter(train_dataloader)
+# imgs = next(batch_iterator)
+# print(imgs.size())
 
-fig = plt.figure()
-img_transformed = imgs[0].detach().numpy().transpose(1,2,0)
-plt.imshow(img_transformed)
-fig.savefig("img/img.png")
+# fig = plt.figure()
+# img_transformed = imgs[0].detach().numpy().transpose(1,2,0)
+# plt.imshow(img_transformed)
+# fig.savefig("img/img.png")
 
 
 
