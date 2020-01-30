@@ -142,8 +142,8 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 #入力乱数の生成
 batch_size = 5
 z_dim = 20
-fixed_z = torch.randn(batch_size,z_dim)
-fixed_z = fixed_z.view(fixed_z.size(0),fixed_z.size(1),1,1)
+fixed_z = torch.randn(batch_size,z_dim,3)
+fixed_z = fixed_z.view(fixed_z.size(0),fixed_z.size(1),1,3)
 #画像生成
 fake_images = G_update(fixed_z.to(device))
 #訓練データ
