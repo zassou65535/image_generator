@@ -17,8 +17,8 @@ class ImageTransform():
 				transforms.ToTensor(),
 				transforms.Normalize(mean,std)
 			])
-	def __call__(self,img):
-		return self.data_transform(img)
+	def __call__(self,img,resize_width_height_pixel):
+		return self.data_transform(img,resize_width_height_pixel)
 
 class GAN_Img_Dataset(data.Dataset):
 	#画像のデータセットクラス
@@ -32,7 +32,7 @@ class GAN_Img_Dataset(data.Dataset):
 	def __getitem__(self,index):
 		img_path = self.file_list[index]
 		img = Image.open(img_path)#[RGB][高さ][幅]
-		img_transformed = self.transform(img)
+		img_transformed = self.transform(img,64)
 		return img_transformed
 
 # #動作確認
