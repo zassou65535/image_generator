@@ -34,7 +34,7 @@ def train_model(G,D,dataloader,num_epochs):
 	g_optimizer = torch.optim.Adam(G.parameters(),g_lr,[beta1,beta2])
 	d_optimizer = torch.optim.Adam(D.parameters(),d_lr,[beta1,beta2])
 	#誤差関数の定義
-	criterion = nn.BCEWithLogitLoss(reduction="mean")
+	criterion = nn.BCEWithLogitsLoss(reduction="mean")
 	#パラメータ類
 	z_dim = 20
 	mini_batch_size = 5
