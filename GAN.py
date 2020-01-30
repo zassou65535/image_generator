@@ -63,6 +63,7 @@ def train_model(G,D,dataloader,num_epochs):
 		print("(train)")
 		#データローダーからminibatchずつ取り出す
 		for imgs in dataloader:
+			print(imgs.size())
 			print(iteration)
 			#-------------------------
 			#discriminatorの学習
@@ -141,7 +142,6 @@ G_update,D_update = train_model(G,D,dataloader=train_dataloader,num_epochs=num_e
 #生成された画像、訓練データを可視化する
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 #入力乱数の生成
-batch_size = 5
 z_dim = 20
 fixed_z = torch.randn(batch_size,z_dim,3)
 fixed_z = fixed_z.view(fixed_z.size(0),fixed_z.size(1),1,3)
