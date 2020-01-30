@@ -78,7 +78,7 @@ def train_model(G,D,dataloader,num_epochs):
 			d_out_real = D(imgs)
 			#偽の画像を生成して判定
 			input_z = torch.randn(mini_batch_size,z_dim,3).to(device)
-			input_z = input_z.view(input_z.size(0),input_z.size(1),1,1)
+			input_z = input_z.view(input_z.size(0),input_z.size(1),1,3)
 			print(input_z.size())
 			fake_images = G(input_z)
 			#誤差の計算
@@ -95,8 +95,8 @@ def train_model(G,D,dataloader,num_epochs):
 			#generatorの学習
 			#-------------------------
 			#偽の画像を生成して判定
-			input_z = torch.randn(mini_batch_size,z_dim).to(device)
-			input_z = input_z.view(input_z.size(0),input_z.size(1),1,1)
+			input_z = torch.randn(mini_batch_size,z_dim,3).to(device)
+			input_z = input_z.view(input_z.size(0),input_z.size(1),1,3)
 			fake_images = G(input_z)
 			d_out_fake = D(fake_images)
 			#誤差の計算
