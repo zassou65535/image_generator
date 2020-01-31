@@ -63,7 +63,7 @@ def train_model(G,D,dataloader,num_epochs):
 		print("(train)")
 		#データローダーからminibatchずつ取り出す
 		for imgs in dataloader:
-			imgs = imgs.transpose(0,2,3,1)
+			imgs = imgs.view(5,64,64,3)
 			print(imgs.size())
 			print(dataloader)
 			print(iteration)
