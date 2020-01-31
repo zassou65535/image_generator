@@ -132,7 +132,7 @@ mean = (0.5,)
 std = (0.5,)
 train_dataset = GAN_Img_Dataset(file_list=train_img_list,transform=ImageTransform(mean,std,resize_width_height_pixel=64))
 #データローダー作成
-batch_size = 5
+batch_size = 8
 train_dataloader = torch.utils.data.DataLoader(train_dataset,batch_size=batch_size,shuffle=True)
 
 #epoch数指定
@@ -144,7 +144,7 @@ G_update,D_update = train_model(G,D,dataloader=train_dataloader,num_epochs=num_e
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 #入力乱数の生成
 z_dim = 20
-fixed_z = torch.randn(batch_size,z_dim,3)
+fixed_z = torch.randn(batch_size,z_dim)
 fixed_z = fixed_z.view(fixed_z.size(0),fixed_z.size(1),1,3)
 #画像生成
 fake_images = G_update(fixed_z.to(device))
