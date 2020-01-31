@@ -33,7 +33,7 @@ class GAN_Img_Dataset(data.Dataset):
 		img_path = self.file_list[index]
 		img = Image.open(img_path)#[RGB][高さ][幅]
 		img_transformed = self.transform(img)
-		return img_transformed.transpose(1,2,0)
+		return img_transformed
 
 # #動作確認
 # train_img_list = make_datapath_list()
