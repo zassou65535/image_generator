@@ -132,6 +132,7 @@ mean = (0.5,)
 std = (0.5,)
 train_dataset = GAN_Img_Dataset(file_list=train_img_list,transform=ImageTransform(mean,std,resize_width_height_pixel=64))
 for i in range(0,len(train_dataset)):
+	print(str(i))
 	print(train_dataset[i].size())
 print(":::::::::::::::::::::::::::::::::::::")
 #データローダー作成
