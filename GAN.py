@@ -132,7 +132,7 @@ mean = (0.5,)
 std = (0.5,)
 train_dataset = GAN_Img_Dataset(file_list=train_img_list,transform=ImageTransform(mean,std,resize_width_height_pixel=64))
 #データローダー作成
-batch_size = 8
+batch_size = 5
 train_dataloader = torch.utils.data.DataLoader(train_dataset,batch_size=batch_size,shuffle=True)
 
 #epoch数指定
