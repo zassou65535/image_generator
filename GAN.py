@@ -63,9 +63,6 @@ def train_model(G,D,dataloader,num_epochs):
 		print("(train)")
 		#データローダーからminibatchずつ取り出す
 		for imgs in dataloader:
-			print(imgs.size())
-			print(dataloader)
-			print(iteration)
 			#-------------------------
 			#discriminatorの学習
 			#-------------------------
