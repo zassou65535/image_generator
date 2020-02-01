@@ -87,8 +87,6 @@ def train_model(G,D,dataloader,num_epochs):
 			fake_images = G(input_z)
 			d_out_fake = D(fake_images)
 			#誤差の計算
-			print(d_out_real.size())
-			print(d_out_real.view(-1).size())
 			d_loss_real = criterion(d_out_real.view(-1),label_real)
 			d_loss_fake = criterion(d_out_fake.view(-1),label_fake)
 			d_loss = d_loss_real + d_loss_fake
@@ -172,11 +170,13 @@ for i in range(0,5):
 
 #もっと生成
 generate_number = 70#追加で生成する画像の数
-fixed_z = torch.randn(generate_number,z_dim)
-generated_images = G_update(fixed_z.to(device))#画像生成
-for i in range(10,10+generate_number):
-	plt.subplot(2,5,i+1)
-	plt.imshow(generated_images[i].cpu().detach().numpy().transpose(1,2,0))
+for i in range(0,generate_number/5):
+	fixed_z = torch.randn(batch_size,z_dim)
+	fixed_z = fixed_z.view(fixed_z.size(0),fixed_z.size(1),1,1)
+	generated_images = G_update(fixed_z.to(device))
+	for k in range(0,5)
+		plt.subplot(2,5,10+i*5+k+1)
+		plt.imshow(generated_images[k].cpu().detach().numpy().transpose(1,2,0))
 
 fig.savefig("img/img.png")
 
