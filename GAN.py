@@ -5,7 +5,7 @@ from dataloader import *
 from discriminator import *
 from generator import *
 
-pixel_size = 128#画像のピクセルサイズ
+pixel_size = 64#画像のピクセルサイズ
 
 #ネットワークを初期化
 def weights_init(m):
@@ -159,6 +159,7 @@ fake_images = G_update(fixed_z.to(device))
 #訓練データ
 batch_iterator = iter(train_dataloader)#イテレータに変換
 imges = next(batch_iterator)#1番目の要素を取り出す
+
 #出力
 fig = plt.figure(figsize=(15,6))
 for i in range(0,5):
@@ -168,6 +169,15 @@ for i in range(0,5):
 	#下段に訓練データを配置
 	plt.subplot(2,5,5+i+1)
 	plt.imshow(fake_images[i].cpu().detach().numpy().transpose(1,2,0))
+
+#もっと生成
+generate_number = 70#追加で生成する画像の数
+fixed_z = torch.randn(generate_number,z_dim)
+generated_images = G_update(fixed_z.to(device))#画像生成
+for i in range(10,10+generate_number):
+	plt.subplot(2,5,i+1)
+	plt.imshow(generated_images[i].cpu().detach().numpy().transpose(1,2,0))
+
 fig.savefig("img/img.png")
 
 
