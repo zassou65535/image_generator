@@ -18,8 +18,8 @@ def weights_init(m):
 		nn.init.constant_(m.bias.data,0)
 
 #初期化の実施
-G = Generator(z_dim=20,image_size=64)
-D = Discriminator(z_dim=20,image_size=64)
+G = Generator(z_dim=20,image_size=160)
+D = Discriminator(z_dim=20,image_size=160)
 G.apply(weights_init)
 D.apply(weights_init)
 print("initalized networks")
@@ -130,7 +130,7 @@ def train_model(G,D,dataloader,num_epochs):
 train_img_list = make_datapath_list()
 mean = (0.5,)
 std = (0.5,)
-train_dataset = GAN_Img_Dataset(file_list=train_img_list,transform=ImageTransform(mean,std,resize_width_height_pixel=64))
+train_dataset = GAN_Img_Dataset(file_list=train_img_list,transform=ImageTransform(mean,std,resize_width_height_pixel=160))
 # for i in range(0,len(train_dataset)):
 # 	print(str(i))
 # 	print(train_dataset[i].size())
@@ -140,7 +140,7 @@ batch_size = 5
 train_dataloader = torch.utils.data.DataLoader(train_dataset,batch_size=batch_size,shuffle=True)
 
 #epoch数指定
-num_epochs = 200;
+num_epochs = 1;
 #モデルを学習させる
 G_update,D_update = train_model(G,D,dataloader=train_dataloader,num_epochs=num_epochs)
 
