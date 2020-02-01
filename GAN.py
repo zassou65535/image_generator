@@ -160,11 +160,10 @@ fig = plt.figure(figsize=(15,6))
 for i in range(0,5):
 	#上段に訓練データを配置
 	plt.subplot(2,5,i+1)
-	print(imges[i].size())
-	plt.imshow(imges[i][0].cpu().detach().numpy().transpose(1,2,0))
+	plt.imshow(imges[i].cpu().detach().numpy().transpose(1,2,0))
 	#下段に訓練データを配置
 	plt.subplot(2,5,5+i+1)
-	plt.imshow(fake_images[i][0].cpu().detach().numpy().transpose(1,2,0))
+	plt.imshow(fake_images[i].cpu().detach().numpy().transpose(1,2,0))
 fig.savefig("img/img.png")
 
 # Traceback (most recent call last):
