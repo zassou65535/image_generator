@@ -140,7 +140,7 @@ batch_size = 5
 train_dataloader = torch.utils.data.DataLoader(train_dataset,batch_size=batch_size,shuffle=True)
 
 #epoch数指定
-num_epochs = 2;
+num_epochs = 1;
 #モデルを学習させる
 G_update,D_update = train_model(G,D,dataloader=train_dataloader,num_epochs=num_epochs)
 
@@ -160,7 +160,7 @@ fig = plt.figure(figsize=(15,6))
 for i in range(0,5):
 	#上段に訓練データを配置
 	plt.subplot(2,5,i+1)
-	print(imges[i][0].size())
+	print(imges[i].size())
 	plt.imshow(imges[i][0].cpu().detach().numpy().transpose(1,2,0))
 	#下段に訓練データを配置
 	plt.subplot(2,5,5+i+1)
