@@ -169,8 +169,8 @@ for i in range(0,5):
 	plt.imshow(fake_images[i].cpu().detach().numpy().transpose(1,2,0))
 
 #もっと生成
-generate_number = 70#追加で生成する画像の数
-for i in range(0,generate_number/5):
+generate_number = 14#(5*generate_number)枚追加で生成する
+for i in range(0,generate_number):
 	fixed_z = torch.randn(batch_size,z_dim)
 	fixed_z = fixed_z.view(fixed_z.size(0),fixed_z.size(1),1,1)
 	generated_images = G_update(fixed_z.to(device))
