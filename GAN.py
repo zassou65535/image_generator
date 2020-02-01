@@ -5,6 +5,8 @@ from dataloader import *
 from discriminator import *
 from generator import *
 
+pixel_size = 64#画像のピクセルサイズ
+
 #ネットワークを初期化
 def weights_init(m):
 	classname = m.__class__.__name__
@@ -18,8 +20,8 @@ def weights_init(m):
 		nn.init.constant_(m.bias.data,0)
 
 #初期化の実施
-G = Generator(z_dim=20,image_size=160)
-D = Discriminator(z_dim=20,image_size=160)
+G = Generator(z_dim=20,image_size=pixel_size)
+D = Discriminator(z_dim=20,image_size=pixel_size)
 G.apply(weights_init)
 D.apply(weights_init)
 print("initalized networks")
@@ -132,7 +134,7 @@ def train_model(G,D,dataloader,num_epochs):
 train_img_list = make_datapath_list()
 mean = (0.5,)
 std = (0.5,)
-train_dataset = GAN_Img_Dataset(file_list=train_img_list,transform=ImageTransform(mean,std,resize_width_height_pixel=160))
+train_dataset = GAN_Img_Dataset(file_list=train_img_list,transform=ImageTransform(mean,std,resize_width_height_pixel=pixel_size))
 # for i in range(0,len(train_dataset)):
 # 	print(str(i))
 # 	print(train_dataset[i].size())
