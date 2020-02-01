@@ -166,10 +166,5 @@ for i in range(0,5):
 	plt.imshow(fake_images[i].cpu().detach().numpy().transpose(1,2,0))
 fig.savefig("img/img.png")
 
-# Traceback (most recent call last):
-#   File "GAN.py", line 163, in <module>
-#     plt.imshow(imges[i][0].cpu().detach().numpy().transpose(1,2,0))
-# ValueError: axes don't match array
-
 
 
