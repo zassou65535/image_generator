@@ -5,7 +5,7 @@ from dataloader import *
 from discriminator import *
 from generator import *
 
-pixel_size = 64#画像のピクセルサイズ
+pixel_size = 128#画像のピクセルサイズ
 
 #ネットワークを初期化
 def weights_init(m):
