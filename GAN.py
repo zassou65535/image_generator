@@ -36,7 +36,7 @@ def train_model(G,D,dataloader,num_epochs):
 	g_optimizer = torch.optim.Adam(G.parameters(),g_lr,[beta1,beta2])
 	d_optimizer = torch.optim.Adam(D.parameters(),d_lr,[beta1,beta2])
 	#誤差関数の定義
-	criterion = nn.BCEWithLogitsLoss(reduction="mean")
+	#criterion = nn.BCEWithLogitsLoss(reduction="mean")
 	#パラメータ類
 	z_dim = 20
 	mini_batch_size = 5
@@ -77,18 +77,20 @@ def train_model(G,D,dataloader,num_epochs):
 			#正解ラベル、偽ラベルを作成
 			#epochの最後のイテレーションはミニバッチの数が少なくなる
 			mini_batch_size = imgs.size()[0]
-			label_real = torch.full((mini_batch_size,),1).to(device)
-			label_fake = torch.full((mini_batch_size,),0).to(device)
+			# label_real = torch.full((mini_batch_size,),1).to(device)
+			# label_fake = torch.full((mini_batch_size,),0).to(device)
 			#真の画像を判定
-			d_out_real = D(imgs)
+			d_out_real,_,_ = D(imgs)
 			#偽の画像を生成して判定
 			input_z = torch.randn(mini_batch_size,z_dim).to(device)
 			input_z = input_z.view(input_z.size(0),input_z.size(1),1,1)
-			fake_images = G(input_z)
-			d_out_fake = D(fake_images)
+			fake_images,_,_ = G(input_z)
+			d_out_fake,_,_ = D(fake_images)
 			#誤差の計算
-			d_loss_real = criterion(d_out_real.view(-1),label_real)
-			d_loss_fake = criterion(d_out_fake.view(-1),label_fake)
+			# d_loss_real = criterion(d_out_real.view(-1),label_real)
+			# d_loss_fake = criterion(d_out_fake.view(-1),label_fake)
+			d_loss_real = torch.nn.ReLU()(1.0-d_out_real).mean()
+			d_loss_fake = torch.nn.ReLU()(1.0+d_out_fake).mean()
 			d_loss = d_loss_real + d_loss_fake
 			#誤差を伝搬
 			g_optimizer.zero_grad()
@@ -102,10 +104,11 @@ def train_model(G,D,dataloader,num_epochs):
 			#偽の画像を生成して判定
 			input_z = torch.randn(mini_batch_size,z_dim).to(device)
 			input_z = input_z.view(input_z.size(0),input_z.size(1),1,1)
-			fake_images = G(input_z)
-			d_out_fake = D(fake_images)
+			fake_images,_,_ = G(input_z)
+			d_out_fake,_,_ = D(fake_images)
 			#誤差の計算
-			g_loss = criterion(d_out_fake.view(-1),label_real)
+			#g_loss = criterion(d_out_fake.view(-1),label_real)
+			g_loss =- d_out_fake.mean()
 			#誤差を伝搬
 			g_optimizer.zero_grad()
 			d_optimizer.zero_grad()
@@ -142,7 +145,7 @@ batch_size = 5
 train_dataloader = torch.utils.data.DataLoader(train_dataset,batch_size=batch_size,shuffle=True)
 
 #epoch数指定
-num_epochs = 200;
+num_epochs = 1;
 #モデルを学習させる
 G_update,D_update = train_model(G,D,dataloader=train_dataloader,num_epochs=num_epochs)
 
@@ -153,7 +156,7 @@ z_dim = 20
 fixed_z = torch.randn(batch_size,z_dim)
 fixed_z = fixed_z.view(fixed_z.size(0),fixed_z.size(1),1,1)
 #画像生成
-fake_images = G_update(fixed_z.to(device))
+fake_images,am1,am2 = G_update(fixed_z.to(device))
 #訓練データ
 batch_iterator = iter(train_dataloader)#イテレータに変換
 imges = next(batch_iterator)#1番目の要素を取り出す
