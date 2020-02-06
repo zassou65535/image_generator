@@ -1,7 +1,7 @@
 #encoding:utf-8
-from importer import *
-from generator import *
-from self_attention import *
+from .importer import *
+from .generator import *
+from .self_attention import *
 
 class Discriminator(nn.Module):
 	def __init__(self,z_dim=20,image_size=64):

@@ -1,6 +1,6 @@
 #encoding:utf-8
-from importer import *
-from generator import *
+from .importer import *
+from .generator import *
 
 class Self_Attention(nn.Module):
 	def __init__(self,in_dim):

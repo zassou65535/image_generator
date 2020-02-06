@@ -1,6 +1,6 @@
 #encoding:utf-8
 
-from importer import *
+from .importer import *
 
 def make_datapath_list():
 	train_img_list = list()#画像ファイルパスのリストを作り、戻り値とする
