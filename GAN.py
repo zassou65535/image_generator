@@ -178,7 +178,7 @@ for i in range(0,generate_number):
 	fig = plt.figure(figsize=(15,6))
 	fixed_z = torch.randn(batch_size,z_dim)
 	fixed_z = fixed_z.view(fixed_z.size(0),fixed_z.size(1),1,1)
-	generated_images = G_update(fixed_z.to(device))
+	generated_images,am1,am2 = G_update(fixed_z.to(device))
 	for k in range(0,5):
 		plt.subplot(2,5,k+1)
 		plt.imshow(generated_images[k].cpu().detach().numpy().transpose(1,2,0))
