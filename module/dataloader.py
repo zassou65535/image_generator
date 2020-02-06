@@ -4,8 +4,8 @@ from importer import *
 
 def make_datapath_list():
 	train_img_list = list()#画像ファイルパスのリストを作り、戻り値とする
-	for img_idx in range(0,102):
-		img_path = "./dataset/"+str(img_idx).zfill(3)+".jpg"
+	for img_idx in range(0,103):
+		img_path = "../dataset/"+str(img_idx).zfill(3)+".jpg"
 		train_img_list.append(img_path)
 	return train_img_list
 
