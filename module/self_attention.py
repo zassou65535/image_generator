@@ -10,6 +10,7 @@ class Self_Attention(nn.Module):
 		self.query_conv = nn.Conv2d(in_channels=in_dim,out_channels=in_dim//8,kernel_size=1)
 		self.key_conv = nn.Conv2d(in_channels=in_dim,out_channels=in_dim//8,kernel_size=1)
 		self.value_conv = nn.Conv2d(in_channels=in_dim,out_channels=in_dim,kernel_size=1)
+		#pythonでは//で小数点以下切り捨ての割り算をする（結果が整数になる）
 
 		#Attention Map作成時の規格化のソフトマックス関数
 		self.softmax = nn.Softmax(dim=-2)

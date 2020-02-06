@@ -4,7 +4,6 @@ from module.importer import *
 from module.dataloader import *
 from module.discriminator import *
 from module.generator import *
-from module.self_attention import *
 
 pixel_size = 64#画像のピクセルサイズ
 
