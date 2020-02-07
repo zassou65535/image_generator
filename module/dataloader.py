@@ -4,8 +4,7 @@ from .importer import *
 import os.path as osp
 
 def make_datapath_list():
-	rootpath = "./dataset/"
-	target_path = osp.join(rootpath+phase+'*.jpg')#os.pathのjoin()ではパスの結合ができる
+	target_path = "./dataset/*.jpg"
 	path_list = []#画像ファイルパスのリストを作り、戻り値とする
 	for path in glob.glob(target_path):
 		path_list.append(path)
