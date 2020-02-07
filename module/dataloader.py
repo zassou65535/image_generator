@@ -9,6 +9,7 @@ def make_datapath_list():
 	for path in glob.glob(target_path):
 		path_list.append(path)
 		print(path)
+	print(str(len(path_list)))
 	return path_list
 
 class ImageTransform():
