@@ -8,7 +8,7 @@ def make_datapath_list():
 	path_list = []#画像ファイルパスのリストを作り、戻り値とする
 	for path in glob.glob(target_path):
 		path_list.append(path)
-	print(path_list)
+		print(path)
 	return path_list
 
 class ImageTransform():
