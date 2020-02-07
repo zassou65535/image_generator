@@ -1,13 +1,16 @@
 #encoding:utf-8
 
 from .importer import *
+import os.path as osp
 
 def make_datapath_list():
-	train_img_list = list()#画像ファイルパスのリストを作り、戻り値とする
-	for img_idx in range(0,103):
-		img_path = "./dataset/"+str(img_idx).zfill(3)+".jpg"
-		train_img_list.append(img_path)
-	return train_img_list
+	rootpath = "./dataset/"
+	target_path = osp.join(rootpath+phase+'*.jpg')#os.pathのjoin()ではパスの結合ができる
+	path_list = []#画像ファイルパスのリストを作り、戻り値とする
+	for path in glob.glob(target_path):
+		path_list.append(path)
+	print(path_list)
+	return path_list
 
 class ImageTransform():
 	#画像の前処理クラス
