@@ -145,7 +145,7 @@ batch_size = 5
 train_dataloader = torch.utils.data.DataLoader(train_dataset,batch_size=batch_size,shuffle=True)
 
 #epoch数指定
-num_epochs = 3000;
+num_epochs = 3000
 #モデルを学習させる
 G_update,D_update = train_model(G,D,dataloader=train_dataloader,num_epochs=num_epochs)
 

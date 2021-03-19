@@ -1,5 +1,6 @@
 dataset/
 __pycache__/
+output_img/
 img/
 img_successful/
 img.sh

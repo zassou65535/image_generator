@@ -4,9 +4,9 @@ from .importer import *
 import os.path as osp
 
 def make_datapath_list():
-	target_path = "./dataset/*.jpg"
+	target_path = "./dataset/**/*.jpg"
 	path_list = []#画像ファイルパスのリストを作り、戻り値とする
-	for path in glob.glob(target_path):
+	for path in glob.glob(target_path, recursive=True):
 		path_list.append(path)
 		print(path)
 	print(str(len(path_list)))
