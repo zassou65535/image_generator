@@ -5,6 +5,8 @@
 
 ## 想定環境
 python 3.7.1  
+pytorch==1.4.0  
+torchvision==0.5.0  
 `pip install -r requirements.txt`で環境を揃えることができます。  
 
 ## 使い方
